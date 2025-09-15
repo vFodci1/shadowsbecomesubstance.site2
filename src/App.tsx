@@ -1,6 +1,3 @@
-// Shadows Become Substance — Landing (Tailwind v4)
-// Assumes: index.css contains only `@import "tailwindcss";`
-
 function App() {
   return (
     <div className="bg-black text-white min-h-screen font-sans">
@@ -20,15 +17,34 @@ function App() {
       </header>
 
       {/* Hero */}
-      <section
-        className="relative bg-cover bg-center"
-        style={{
-          // Replace with your artwork/press photo when ready
-          backgroundImage:
-            "linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.8)), url('')",
-        }}
-      >
-        <div className="mx-auto max-w-6xl px-6 py-28 text-center">
+      <section className="relative bg-black overflow-hidden">
+        {/* Background overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/90 z-0"></div>
+
+{/* Scattered images */}
+<img
+  src="/img1.png"
+  alt="Band Art"
+  className="absolute top-5 left-10 w-45 opacity-70 rotate-[-6deg] animate-[float_6s_ease-in-out_infinite]"
+/>
+<img
+  src="/img2.png"
+  alt="Band Art"
+  className="absolute top-20 right-16 w-40 opacity-70 rotate-[8deg] animate-[float_7s_ease-in-out_infinite]"
+/>
+<img
+  src="/img3.png"
+  alt="Band Art"
+  className="absolute bottom-20 left-24 w-36 opacity-70 rotate-[4deg] animate-[float_8s_ease-in-out_infinite]"
+/>
+<img
+  src="/img4.png"
+  alt="Band Art"
+  className="absolute bottom-10 right-20 w-45 opacity-70 rotate-[-10deg] animate-[float_9s_ease-in-out_infinite]"
+/>
+
+        {/* Hero content */}
+        <div className="relative z-10 mx-auto max-w-6xl px-6 py-28 text-center">
           <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight">
             When <span className="text-yellow-100">Shadows</span> Become <span className="text-yellow-100">Substance</span>
           </h1>
@@ -93,14 +109,12 @@ function App() {
 
         {/* Embedded players */}
         <div className="mt-10 grid md:grid-cols-2 gap-6">
-          {/* Spotify embed (example album/track/player; change if you prefer artist embed) */}
           <iframe
             className="w-full h-[380px] rounded-lg border border-gray-800"
             src="https://open.spotify.com/embed/artist/7D2Dx35nAzENA8TqOTeVUm"
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy"
           />
-          {/* YouTube Official MV */}
           <iframe
             className="w-full h-[380px] rounded-lg border border-gray-800"
             src="https://www.youtube.com/embed/zVr8Nr0oh3E"
@@ -112,7 +126,7 @@ function App() {
         </div>
       </section>
 
-      {/* Shows (includes recent past shows for history) */}
+      {/* Shows */}
       <section id="shows" className="mx-auto max-w-6xl px-6 py-16">
         <h2 className="text-3xl font-bold mb-6 text-yellow-100">Shows</h2>
         <ul className="grid md:grid-cols-2 gap-6">
@@ -154,7 +168,7 @@ function App() {
         </p>
       </section>
 
-      {/* Contact / Socials */}
+      {/* Contact */}
       <section id="contact" className="bg-gray-950 border-t border-red-500">
         <div className="mx-auto max-w-6xl px-6 py-12">
           <h2 className="text-3xl font-bold mb-4 text-yellow-100">Contact</h2>
