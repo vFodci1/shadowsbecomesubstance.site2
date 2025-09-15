@@ -21,27 +21,34 @@ function App() {
         {/* Background overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/90 z-0"></div>
 
-{/* Scattered images */}
-<img
-  src="/img1.png"
-  alt="Band Art"
-  className="absolute top-5 left-10 w-45 opacity-70 rotate-[-6deg] animate-[float_6s_ease-in-out_infinite]"
-/>
-<img
-  src="/img2.png"
-  alt="Band Art"
-  className="absolute top-20 right-16 w-40 opacity-70 rotate-[8deg] animate-[float_7s_ease-in-out_infinite]"
-/>
-<img
-  src="/img3.png"
-  alt="Band Art"
-  className="absolute bottom-20 left-24 w-36 opacity-70 rotate-[4deg] animate-[float_8s_ease-in-out_infinite]"
-/>
-<img
-  src="/img4.png"
-  alt="Band Art"
-  className="absolute bottom-10 right-20 w-45 opacity-70 rotate-[-10deg] animate-[float_9s_ease-in-out_infinite]"
-/>
+{/* Scattered images with glow */}
+<div className="absolute top-10 left-10 hidden md:block">
+  <div className="absolute inset-0 bg-red-600/30 blur-3xl rounded-full"></div>
+  <img
+    src="/img1.png"
+    alt="Band Art"
+    className="relative w-32 opacity-80 rotate-[-6deg] animate-[float_6s_ease-in-out_infinite]"
+  />
+</div>
+
+<div className="absolute top-20 right-16 hidden md:block">
+  <div className="absolute inset-0 bg-red-600/30 blur-3xl rounded-full"></div>
+  <img
+    src="/img2.png"
+    alt="Band Art"
+    className="relative w-40 opacity-80 rotate-[8deg] animate-[float_7s_ease-in-out_infinite]"
+  />
+</div>
+
+{/* Show fewer/smaller images on mobile */}
+<div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 md:hidden">
+  <div className="absolute inset-0 bg-red-600/30 blur-2xl rounded-full"></div>
+  <img
+    src="/img3.png"
+    alt="Band Art"
+    className="relative w-24 opacity-80 animate-[float_8s_ease-in-out_infinite]"
+  />
+</div>
 
         {/* Hero content */}
         <div className="relative z-10 mx-auto max-w-6xl px-6 py-28 text-center">
