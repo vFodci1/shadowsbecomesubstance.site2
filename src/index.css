@@ -1,18 +1,19 @@
+/* Tailwind core imports */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* ===== Custom Styles ===== */
 
-/* Body reset */
+/* Reset */
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background-color: black;
+  background-color: black; /* fallback in case background image fails */
   color: white;
 }
 
-/* Glitch text (backup in case Tailwind classes don’t apply everywhere) */
+/* Glitch text effect */
 .glitch-text {
   position: relative;
   display: inline-block;
@@ -20,15 +21,37 @@ body {
 }
 
 @keyframes glitch {
-  0% { text-shadow: 2px 0 red, -2px 0 blue; }
-  20% { text-shadow: -2px 0 red, 2px 0 blue; }
-  40% { text-shadow: 2px 0 blue, -2px 0 red; }
-  60% { text-shadow: -2px 0 blue, 2px 0 red; }
-  100% { text-shadow: 2px 0 red, -2px 0 blue; }
+  0% {
+    text-shadow: 2px 0 red, -2px 0 blue;
+  }
+  20% {
+    text-shadow: -2px 0 red, 2px 0 blue;
+  }
+  40% {
+    text-shadow: 2px 0 blue, -2px 0 red;
+  }
+  60% {
+    text-shadow: -2px 0 blue, 2px 0 red;
+  }
+  100% {
+    text-shadow: 2px 0 red, -2px 0 blue;
+  }
 }
 
-/* Optional: give all sections some breathing room */
-section {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+/* Optional overlay styling */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+/* For background images on full sections */
+.bg-radio {
+  background-image: url('/bg-radio.jpg'); /* put your image inside public/ */
+  background-size: cover;
+  background-position: center;
 }
