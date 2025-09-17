@@ -1,23 +1,34 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Custom Styles ===== */
+
+/* Body reset */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: black;
+  color: white;
+}
+
+/* Glitch text (backup in case Tailwind classes don’t apply everywhere) */
 .glitch-text {
   position: relative;
+  display: inline-block;
   animation: glitch 2s infinite;
 }
 
 @keyframes glitch {
-  0% {
-    text-shadow: 2px 0 red, -2px 0 blue;
-  }
-  20% {
-    text-shadow: -2px 0 red, 2px 0 blue;
-  }
-  40% {
-    text-shadow: 2px 0 blue, -2px 0 red;
-  }
-  60% {
-    text-shadow: -2px 0 blue, 2px 0 red;
-  }
-  100% {
-    text-shadow: 2px 0 red, -2px 0 blue;
-  }
+  0% { text-shadow: 2px 0 red, -2px 0 blue; }
+  20% { text-shadow: -2px 0 red, 2px 0 blue; }
+  40% { text-shadow: 2px 0 blue, -2px 0 red; }
+  60% { text-shadow: -2px 0 blue, 2px 0 red; }
+  100% { text-shadow: 2px 0 red, -2px 0 blue; }
+}
+
+/* Optional: give all sections some breathing room */
+section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
