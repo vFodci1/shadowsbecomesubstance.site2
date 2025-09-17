@@ -1,19 +1,19 @@
+@import "tailwindcss";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ===== Custom Styles ===== */
+/* ====== Custom Styles ====== */
 
-/* Reset body */
+/* Basic body reset */
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background-color: black; /* fallback */
+  background-color: black;
   color: white;
-  min-height: 100vh;
 }
 
-/* Glitch text effect */
+/* Glitch effect for logo/headings */
 .glitch-text {
   position: relative;
   display: inline-block;
@@ -21,26 +21,14 @@ body {
 }
 
 @keyframes glitch {
-  0% {
-    text-shadow: 2px 0 red, -2px 0 blue;
-  }
-  20% {
-    text-shadow: -2px 0 red, 2px 0 blue;
-  }
-  40% {
-    text-shadow: 2px 0 blue, -2px 0 red;
-  }
-  60% {
-    text-shadow: -2px 0 blue, 2px 0 red;
-  }
-  100% {
-    text-shadow: 2px 0 red, -2px 0 blue;
-  }
+  0% { text-shadow: 2px 0 red, -2px 0 blue; }
+  20% { text-shadow: -2px 0 red, 2px 0 blue; }
+  40% { text-shadow: 2px 0 blue, -2px 0 red; }
+  60% { text-shadow: -2px 0 blue, 2px 0 red; }
+  100% { text-shadow: 2px 0 red, -2px 0 blue; }
 }
 
-/* Background helper class */
-.bg-radio {
-  background-image: url('/bg-radio.jpg'); /* place this file in /public */
-  background-size: cover;
-  background-position: center;
+/* Optional: smoother scrolling */
+html {
+  scroll-behavior: smooth;
 }

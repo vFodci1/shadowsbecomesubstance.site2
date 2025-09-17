@@ -79,6 +79,7 @@ function Layout({ children }: { children: React.ReactNode }) {
           </Link>
           <nav className="hidden sm:flex items-center gap-6 text-sm uppercase font-semibold">
             <Link to="/" className="hover:text-red-400">Home</Link>
+            <Link to="/shows" className="hover:text-red-400">Shows</Link>
             <Link to="/gallery" className="hover:text-red-400">Gallery</Link>
             <Link to="/about" className="hover:text-red-400">About</Link>
             <Link to="/contact" className="hover:text-red-400">Contact</Link>
@@ -108,7 +109,7 @@ function Home() {
   const [shows, setShows] = useState<Show[]>([]);
 
   useEffect(() => {
-    fetch("https://sheetdb.io/api/v1/is31x8480hnqe")
+    fetch("https://sheetdb.io/api/v1/YOUR_SHEET_ID")
       .then((res) => res.json())
       .then((data: Show[]) => setShows(Array.isArray(data) ? data : []))
       .catch(() => setShows([]));
@@ -178,6 +179,15 @@ function Home() {
 
 /* ====== Other Pages ====== */
 
+function Shows() {
+  return (
+    <div className="max-w-6xl mx-auto text-center">
+      <h2 className="text-3xl font-bold mb-6 text-yellow-100 glitch-text">Shows</h2>
+      <p className="text-gray-300">Full interactive shows list coming soon.</p>
+    </div>
+  );
+}
+
 function Gallery() {
   return (
     <div className="max-w-6xl mx-auto">
@@ -244,6 +254,7 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/shows" element={<Shows />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
