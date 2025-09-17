@@ -35,6 +35,8 @@ function PageWrapper({ children }: { children: React.ReactNode }) {
 /* ====== Layout ====== */
 function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   return (
     <div className="relative bg-black text-white min-h-screen overflow-hidden">
       <style>{`
@@ -77,6 +79,8 @@ function Layout({ children }: { children: React.ReactNode }) {
           <Link to="/" className="text-yellow-100 tracking-wide text-lg sm:text-2xl font-bold glitch-text">
             Shadows Become Substance
           </Link>
+
+          {/* Desktop Nav */}
           <nav className="hidden sm:flex items-center gap-6 text-sm uppercase font-semibold">
             <Link to="/" className="hover:text-red-400">Home</Link>
             <Link to="/shows" className="hover:text-red-400">Shows</Link>
@@ -84,7 +88,26 @@ function Layout({ children }: { children: React.ReactNode }) {
             <Link to="/about" className="hover:text-red-400">About</Link>
             <Link to="/contact" className="hover:text-red-400">Contact</Link>
           </nav>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="sm:hidden text-yellow-100 focus:outline-none"
+            onClick={() => setMobileOpen(!mobileOpen)}
+          >
+            ☰
+          </button>
         </div>
+
+        {/* Mobile Dropdown */}
+        {mobileOpen && (
+          <div className="sm:hidden bg-black border-t border-red-600 px-4 py-4 flex flex-col gap-4 text-sm uppercase font-semibold">
+            <Link to="/" className="hover:text-red-400" onClick={() => setMobileOpen(false)}>Home</Link>
+            <Link to="/shows" className="hover:text-red-400" onClick={() => setMobileOpen(false)}>Shows</Link>
+            <Link to="/gallery" className="hover:text-red-400" onClick={() => setMobileOpen(false)}>Gallery</Link>
+            <Link to="/about" className="hover:text-red-400" onClick={() => setMobileOpen(false)}>About</Link>
+            <Link to="/contact" className="hover:text-red-400" onClick={() => setMobileOpen(false)}>Contact</Link>
+          </div>
+        )}
       </header>
 
       {/* Page Content */}
@@ -104,7 +127,6 @@ function Layout({ children }: { children: React.ReactNode }) {
 
 /* ====== Pages ====== */
 
-// Home
 function Home() {
   const [shows, setShows] = useState<Show[]>([]);
 
@@ -180,8 +202,6 @@ function Home() {
     </section>
   );
 }
-
-/* ====== Other Pages ====== */
 
 function Shows() {
   return (
@@ -269,4 +289,5 @@ function App() {
 }
 
 export default App;
+
 
