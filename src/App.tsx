@@ -117,14 +117,14 @@ function Home() {
 
   const nextShow = shows.length > 0 ? shows[0] : null;
 
-  <section
-  className="relative bg-cover bg-center"
-  style={{
-    backgroundImage:
-      "linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.85)), url('/band-hero.jpg')",
-  }}
->
-
+  return (
+    <section
+      className="relative bg-cover"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.85)), url('/band-hero.jpg')",
+        backgroundPosition: "center 20%",
+      }}
     >
       <div className="relative z-10 text-center px-6 py-28">
         <div className="bg-black/70 px-6 py-10 rounded-lg inline-block">
@@ -178,10 +178,20 @@ function Home() {
   );
 }
 
-  // Custom date parser for formats like "8/15" or "8/15/2025"
+/* ====== Shows Page ====== */
+function Shows() {
+  const [shows, setShows] = useState<Show[]>([]);
+
+  useEffect(() => {
+    fetch("https://sheetdb.io/api/v1/is31x8480hnqe")
+      .then((res) => res.json())
+      .then((data: Show[]) => setShows(Array.isArray(data) ? data : []))
+      .catch(() => setShows([]));
+  }, []);
+
   function parseDate(dateStr: string): Date | null {
     if (!dateStr) return null;
-    const parts = dateStr.split(/[\/\-]/); // split on "/" or "-"
+    const parts = dateStr.split(/[\/\-]/);
     if (parts.length < 2) return null;
 
     let month = parseInt(parts[0], 10) - 1;
@@ -267,7 +277,7 @@ function Home() {
   );
 }
 
-
+/* ====== Other Pages ====== */
 function Gallery() {
   return (
     <div className="max-w-6xl mx-auto">
@@ -345,3 +355,4 @@ function App() {
 }
 
 export default App;
+
