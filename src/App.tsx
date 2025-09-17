@@ -35,8 +35,6 @@ function PageWrapper({ children }: { children: React.ReactNode }) {
 /* ====== Layout ====== */
 function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
-  const [menuOpen, setMenuOpen] = useState(false);
-
   return (
     <div className="relative bg-black text-white min-h-screen overflow-hidden">
       <style>{`
@@ -67,48 +65,26 @@ function Layout({ children }: { children: React.ReactNode }) {
         <div className="relative h-10 flex items-center justify-center">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent_95%,rgba(255,255,255,0.15)_100%)] bg-[length:20px_100%] opacity-30 animate-pulse"></div>
           <div className="absolute h-full w-[2px] bg-red-600 animate-slide"></div>
-          <span className="relative z-10 text-[10px] sm:text-xs tracking-widest text-gray-400 font-mono">
+          <span className="relative z-10 text-xs tracking-widest text-gray-400 font-mono">
             RADIO WORLD • FREQUENCY 89.9 FM
           </span>
         </div>
       </div>
 
       {/* Navbar */}
-<header className="sticky top-0 z-30 bg-gray-950/90 backdrop-blur border-b border-red-600">
-  <div className="mx-auto max-w-6xl px-4 sm:px-6 py-4 flex items-center justify-between">
-    <Link to="/" className="text-yellow-100 tracking-wide text-lg sm:text-2xl font-bold glitch-text">
-      Shadows Become Substance
-    </Link>
-
-    {/* Desktop Nav */}
-    <nav className="hidden sm:flex items-center gap-6 text-sm uppercase font-semibold">
-      <Link to="/" className="hover:text-red-400">Home</Link>
-      <Link to="/shows" className="hover:text-red-400">Shows</Link>
-      <Link to="/gallery" className="hover:text-red-400">Gallery</Link>
-      <Link to="/about" className="hover:text-red-400">About</Link>
-      <Link to="/contact" className="hover:text-red-400">Contact</Link>
-    </nav>
-
-    {/* Mobile Menu Button */}
-    <button
-      className="sm:hidden text-red-400 text-2xl"
-      onClick={() => setMenuOpen(!menuOpen)}
-    >
-      ☰
-    </button>
-  </div>
-
-
-        {/* Mobile Dropdown */}
-        {menuOpen && (
-          <div className="sm:hidden bg-black border-t border-red-600 px-4 py-4 flex flex-col gap-3 text-sm uppercase font-semibold">
-            <Link to="/" onClick={() => setMenuOpen(false)} className="hover:text-red-400">Home</Link>
-            <Link to="/shows" onClick={() => setMenuOpen(false)} className="hover:text-red-400">Shows</Link>
-            <Link to="/gallery" onClick={() => setMenuOpen(false)} className="hover:text-red-400">Gallery</Link>
-            <Link to="/about" onClick={() => setMenuOpen(false)} className="hover:text-red-400">About</Link>
-            <Link to="/contact" onClick={() => setMenuOpen(false)} className="hover:text-red-400">Contact</Link>
-          </div>
-        )}
+      <header className="sticky top-0 z-30 bg-gray-950/90 backdrop-blur border-b border-red-600">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-4 flex items-center justify-between">
+          <Link to="/" className="text-yellow-100 tracking-wide text-lg sm:text-2xl font-bold glitch-text">
+            Shadows Become Substance
+          </Link>
+          <nav className="hidden sm:flex items-center gap-6 text-sm uppercase font-semibold">
+            <Link to="/" className="hover:text-red-400">Home</Link>
+            <Link to="/shows" className="hover:text-red-400">Shows</Link>
+            <Link to="/gallery" className="hover:text-red-400">Gallery</Link>
+            <Link to="/about" className="hover:text-red-400">About</Link>
+            <Link to="/contact" className="hover:text-red-400">Contact</Link>
+          </nav>
+        </div>
       </header>
 
       {/* Page Content */}
@@ -119,7 +95,7 @@ function Layout({ children }: { children: React.ReactNode }) {
       </main>
 
       {/* Footer */}
-      <footer className="bg-black text-center py-6 text-gray-500 text-xs sm:text-sm border-t border-gray-900">
+      <footer className="bg-black text-center py-6 text-gray-500 text-sm border-t border-gray-900">
         © {new Date().getFullYear()} Shadows Become Substance
       </footer>
     </div>
@@ -149,51 +125,51 @@ function Home() {
           "linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.85)), url('/band-hero.jpg')",
       }}
     >
-      <div className="relative z-10 text-center px-4 sm:px-6 py-16 sm:py-28">
-        <div className="bg-black/70 px-4 sm:px-6 py-6 sm:py-10 rounded-lg inline-block">
-          <h1 className="text-3xl sm:text-5xl font-extrabold glitch-text">
+      <div className="relative z-10 text-center px-4 sm:px-6 py-20 sm:py-28">
+        <div className="bg-black/70 px-6 py-10 rounded-lg inline-block">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold glitch-text">
             Radio World
           </h1>
-          <p className="mt-4 max-w-md sm:max-w-xl text-base sm:text-lg text-gray-200 mx-auto">
+          <p className="mt-4 max-w-xl text-base sm:text-lg md:text-xl text-gray-200 mx-auto">
             Tune into our transmission of heavy riffs and atmospheric static.  
             Listen as shadows become substance and the airwaves crackle with energy.
           </p>
         </div>
 
         {/* Spotify + YouTube */}
-        <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl w-full mx-auto">
-          <<div className="w-full h-[380px] rounded-lg border border-gray-700 shadow-lg overflow-hidden">
-  <iframe
-    className="w-full h-full"
-    src="https://open.spotify.com/embed/artist/7D2Dx35nAzENA8TqOTeVUm"
-    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-    loading="lazy"
-  />
-</div>
-
-          />
-          <iframe
-            className="w-full h-[220px] sm:h-[380px] rounded-lg border border-gray-700 shadow-lg"
-            src="https://www.youtube.com/embed/zVr8Nr0oh3E"
-            title="ACTIVE (Official Music Video)"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-            loading="lazy"
-          />
+        <div className="mt-16 grid md:grid-cols-2 gap-6 max-w-6xl w-full mx-auto">
+          <div className="w-full h-[380px] rounded-lg border border-gray-700 shadow-lg overflow-hidden">
+            <iframe
+              className="w-full h-full"
+              src="https://open.spotify.com/embed/artist/7D2Dx35nAzENA8TqOTeVUm"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+            />
+          </div>
+          <div className="w-full h-[380px] rounded-lg border border-gray-700 shadow-lg overflow-hidden">
+            <iframe
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/zVr8Nr0oh3E"
+              title="ACTIVE (Official Music Video)"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
         </div>
 
         {/* Next Show */}
         {nextShow && (
-          <div className="mt-8 sm:mt-12 bg-black/70 px-4 sm:px-6 py-6 sm:py-8 rounded-lg inline-block shadow-md">
-            <h2 className="text-xl sm:text-2xl font-bold text-yellow-100">Next Show</h2>
-            <p className="mt-2 text-gray-200 text-sm sm:text-base">
+          <div className="mt-12 bg-black/70 px-6 py-8 rounded-lg inline-block shadow-md">
+            <h2 className="text-2xl font-bold text-yellow-100">Next Show</h2>
+            <p className="mt-2 text-gray-200">
               {nextShow.Date} • {nextShow.City} — {nextShow.Venue}
             </p>
             {nextShow.TicketLink && (
               <a
                 href={nextShow.TicketLink}
                 target="_blank"
-                className="mt-3 inline-block text-red-500 hover:text-red-600 underline font-semibold text-sm sm:text-base"
+                className="mt-3 inline-block text-red-500 hover:text-red-600 underline font-semibold"
               >
                 🎟 Get Tickets
               </a>
@@ -206,11 +182,12 @@ function Home() {
 }
 
 /* ====== Other Pages ====== */
+
 function Shows() {
   return (
     <div className="max-w-6xl mx-auto text-center">
-      <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-yellow-100 glitch-text">Shows</h2>
-      <p className="text-gray-300 text-sm sm:text-base">Full interactive shows list coming soon.</p>
+      <h2 className="text-3xl font-bold mb-6 text-yellow-100 glitch-text">Shows</h2>
+      <p className="text-gray-300">Full interactive shows list coming soon.</p>
     </div>
   );
 }
@@ -218,8 +195,8 @@ function Shows() {
 function Gallery() {
   return (
     <div className="max-w-6xl mx-auto">
-      <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-yellow-100 glitch-text">Gallery</h2>
-      <p className="text-gray-300 text-sm sm:text-base">Photos from Radio World and live shows will go here.</p>
+      <h2 className="text-3xl font-bold mb-6 text-yellow-100 glitch-text">Gallery</h2>
+      <p className="text-gray-300">Photos from Radio World and live shows will go here.</p>
     </div>
   );
 }
@@ -227,8 +204,8 @@ function Gallery() {
 function About() {
   return (
     <div className="max-w-4xl mx-auto">
-      <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-yellow-100 glitch-text">About</h2>
-      <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+      <h2 className="text-3xl font-bold mb-6 text-yellow-100 glitch-text">About</h2>
+      <p className="text-gray-300 leading-relaxed">
         Shadows Become Substance is an independent alternative duo from New Jersey.  
         On our album “Radio World” we channel heavy riffs and cinematic atmosphere.  
         The crackle of static and the roar of amplifiers merge as we push from raw emotion into catharsis both on stage and in the studio.
@@ -240,8 +217,8 @@ function About() {
 function Contact() {
   return (
     <div className="max-w-4xl mx-auto">
-      <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-yellow-100 glitch-text">Contact</h2>
-      <p className="text-gray-300 text-sm sm:text-base">
+      <h2 className="text-3xl font-bold mb-6 text-yellow-100 glitch-text">Contact</h2>
+      <p className="text-gray-300">
         Email:{" "}
         <a href="mailto:booking.sbs@gmail.com" className="text-red-500 hover:text-red-600 underline">
           booking.sbs@gmail.com
