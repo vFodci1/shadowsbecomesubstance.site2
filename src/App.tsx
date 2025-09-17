@@ -21,7 +21,7 @@ const pageVariant = {
 function PageWrapper({ children }: { children: React.ReactNode }) {
   return (
     <motion.div
-      className="min-h-[80vh] px-6 py-12"
+      className="min-h-[80vh] px-4 sm:px-6 py-8 sm:py-12"
       variants={pageVariant}
       initial="initial"
       animate="animate"
@@ -35,6 +35,8 @@ function PageWrapper({ children }: { children: React.ReactNode }) {
 /* ====== Layout ====== */
 function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="relative bg-black text-white min-h-screen overflow-hidden">
       <style>{`
@@ -65,7 +67,7 @@ function Layout({ children }: { children: React.ReactNode }) {
         <div className="relative h-10 flex items-center justify-center">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent_95%,rgba(255,255,255,0.15)_100%)] bg-[length:20px_100%] opacity-30 animate-pulse"></div>
           <div className="absolute h-full w-[2px] bg-red-600 animate-slide"></div>
-          <span className="relative z-10 text-xs tracking-widest text-gray-400 font-mono">
+          <span className="relative z-10 text-[10px] sm:text-xs tracking-widest text-gray-400 font-mono">
             RADIO WORLD • FREQUENCY 89.9 FM
           </span>
         </div>
@@ -73,10 +75,12 @@ function Layout({ children }: { children: React.ReactNode }) {
 
       {/* Navbar */}
       <header className="sticky top-0 z-30 bg-gray-950/90 backdrop-blur border-b border-red-600">
-        <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
-          <Link to="/" className="text-yellow-100 tracking-wide text-xl sm:text-2xl font-bold glitch-text">
-            Shadows Become Substance
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-4 flex items-center justify-between">
+          <Link to="/" className="text-yellow-100 tracking-wide text-lg sm:text-2xl font-bold glitch-text">
+            SBS
           </Link>
+
+          {/* Desktop Nav */}
           <nav className="hidden sm:flex items-center gap-6 text-sm uppercase font-semibold">
             <Link to="/" className="hover:text-red-400">Home</Link>
             <Link to="/shows" className="hover:text-red-400">Shows</Link>
@@ -84,7 +88,26 @@ function Layout({ children }: { children: React.ReactNode }) {
             <Link to="/about" className="hover:text-red-400">About</Link>
             <Link to="/contact" className="hover:text-red-400">Contact</Link>
           </nav>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="sm:hidden text-red-400 text-2xl"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            ☰
+          </button>
         </div>
+
+        {/* Mobile Dropdown */}
+        {menuOpen && (
+          <div className="sm:hidden bg-black border-t border-red-600 px-4 py-4 flex flex-col gap-3 text-sm uppercase font-semibold">
+            <Link to="/" onClick={() => setMenuOpen(false)} className="hover:text-red-400">Home</Link>
+            <Link to="/shows" onClick={() => setMenuOpen(false)} className="hover:text-red-400">Shows</Link>
+            <Link to="/gallery" onClick={() => setMenuOpen(false)} className="hover:text-red-400">Gallery</Link>
+            <Link to="/about" onClick={() => setMenuOpen(false)} className="hover:text-red-400">About</Link>
+            <Link to="/contact" onClick={() => setMenuOpen(false)} className="hover:text-red-400">Contact</Link>
+          </div>
+        )}
       </header>
 
       {/* Page Content */}
@@ -95,7 +118,7 @@ function Layout({ children }: { children: React.ReactNode }) {
       </main>
 
       {/* Footer */}
-      <footer className="bg-black text-center py-6 text-gray-500 text-sm border-t border-gray-900">
+      <footer className="bg-black text-center py-6 text-gray-500 text-xs sm:text-sm border-t border-gray-900">
         © {new Date().getFullYear()} Shadows Become Substance
       </footer>
     </div>
@@ -119,34 +142,33 @@ function Home() {
 
   return (
     <section
-      className="relative bg-cover"
+      className="relative bg-cover bg-center"
       style={{
         backgroundImage:
           "linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.85)), url('/band-hero.jpg')",
-        backgroundPosition: "center 50%",
       }}
     >
-      <div className="relative z-10 text-center px-6 py-28">
-        <div className="bg-black/70 px-6 py-10 rounded-lg inline-block">
-          <h1 className="text-5xl sm:text-6xl font-extrabold glitch-text">
+      <div className="relative z-10 text-center px-4 sm:px-6 py-16 sm:py-28">
+        <div className="bg-black/70 px-4 sm:px-6 py-6 sm:py-10 rounded-lg inline-block">
+          <h1 className="text-3xl sm:text-5xl font-extrabold glitch-text">
             Radio World
           </h1>
-          <p className="mt-4 max-w-xl text-lg sm:text-xl text-gray-200 mx-auto">
+          <p className="mt-4 max-w-md sm:max-w-xl text-base sm:text-lg text-gray-200 mx-auto">
             Tune into our transmission of heavy riffs and atmospheric static.  
             Listen as shadows become substance and the airwaves crackle with energy.
           </p>
         </div>
 
         {/* Spotify + YouTube */}
-        <div className="mt-16 grid md:grid-cols-2 gap-6 max-w-6xl w-full mx-auto">
+        <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl w-full mx-auto">
           <iframe
-            className="w-full h-[380px] rounded-lg border border-gray-700 shadow-lg"
+            className="w-full h-[220px] sm:h-[380px] rounded-lg border border-gray-700 shadow-lg"
             src="https://open.spotify.com/embed/artist/7D2Dx35nAzENA8TqOTeVUm"
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy"
           />
           <iframe
-            className="w-full h-[380px] rounded-lg border border-gray-700 shadow-lg"
+            className="w-full h-[220px] sm:h-[380px] rounded-lg border border-gray-700 shadow-lg"
             src="https://www.youtube.com/embed/zVr8Nr0oh3E"
             title="ACTIVE (Official Music Video)"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -157,16 +179,16 @@ function Home() {
 
         {/* Next Show */}
         {nextShow && (
-          <div className="mt-12 bg-black/70 px-6 py-8 rounded-lg inline-block shadow-md">
-            <h2 className="text-2xl font-bold text-yellow-100">Next Show</h2>
-            <p className="mt-2 text-gray-200">
+          <div className="mt-8 sm:mt-12 bg-black/70 px-4 sm:px-6 py-6 sm:py-8 rounded-lg inline-block shadow-md">
+            <h2 className="text-xl sm:text-2xl font-bold text-yellow-100">Next Show</h2>
+            <p className="mt-2 text-gray-200 text-sm sm:text-base">
               {nextShow.Date} • {nextShow.City} — {nextShow.Venue}
             </p>
             {nextShow.TicketLink && (
               <a
                 href={nextShow.TicketLink}
                 target="_blank"
-                className="mt-3 inline-block text-red-500 hover:text-red-600 underline font-semibold"
+                className="mt-3 inline-block text-red-500 hover:text-red-600 underline font-semibold text-sm sm:text-base"
               >
                 🎟 Get Tickets
               </a>
@@ -178,111 +200,21 @@ function Home() {
   );
 }
 
-/* ====== Shows Page ====== */
+/* ====== Other Pages ====== */
 function Shows() {
-  const [shows, setShows] = useState<Show[]>([]);
-
-  useEffect(() => {
-    fetch("https://sheetdb.io/api/v1/is31x8480hnqe")
-      .then((res) => res.json())
-      .then((data: Show[]) => setShows(Array.isArray(data) ? data : []))
-      .catch(() => setShows([]));
-  }, []);
-
-  function parseDate(dateStr: string): Date | null {
-    if (!dateStr) return null;
-    const parts = dateStr.split(/[\/\-]/);
-    if (parts.length < 2) return null;
-
-    let month = parseInt(parts[0], 10) - 1;
-    let day = parseInt(parts[1], 10);
-    let year = parts[2] ? parseInt(parts[2], 10) : new Date().getFullYear();
-
-    const d = new Date(year, month, day);
-    return isNaN(d.getTime()) ? null : d;
-  }
-
-  const today = new Date();
-
-  const upcoming = shows.filter((s) => {
-    const d = parseDate(s.Date);
-    return d !== null && d >= today;
-  });
-
-  const past = shows.filter((s) => {
-    const d = parseDate(s.Date);
-    return d !== null && d < today;
-  });
-
   return (
-    <div className="max-w-6xl mx-auto">
-      {/* Upcoming Shows */}
-      <h2 className="text-3xl font-bold mb-6 text-yellow-100 glitch-text text-center">
-        Upcoming Shows
-      </h2>
-      {upcoming.length === 0 ? (
-        <p className="text-gray-400 text-center">No upcoming shows right now.</p>
-      ) : (
-        <ul className="grid md:grid-cols-2 gap-6">
-          {upcoming.map((show, idx) => (
-            <li
-              key={idx}
-              className="bg-black/60 border border-red-600 p-6 rounded-lg shadow-md hover:scale-105 transition-transform"
-            >
-              <div className="text-gray-300">{show.Date} • {show.City}</div>
-              <div className="text-xl font-bold text-white">{show.Venue}</div>
-              {show.TicketLink && (
-                <a
-                  href={show.TicketLink}
-                  target="_blank"
-                  className="mt-2 inline-block text-red-500 hover:text-red-600 underline"
-                >
-                  🎟 Tickets
-                </a>
-              )}
-            </li>
-          ))}
-        </ul>
-      )}
-
-      {/* Past Shows */}
-      <h2 className="text-3xl font-bold mb-6 text-yellow-100 glitch-text text-center mt-12">
-        Past Shows
-      </h2>
-      {past.length === 0 ? (
-        <p className="text-gray-400 text-center">No past shows yet.</p>
-      ) : (
-        <ul className="grid md:grid-cols-2 gap-6">
-          {past.map((show, idx) => (
-            <li
-              key={idx}
-              className="bg-black/50 border border-yellow-500 p-6 rounded-lg shadow-md hover:scale-105 transition-transform"
-            >
-              <div className="text-gray-300">{show.Date} • {show.City}</div>
-              <div className="text-xl font-bold text-white">{show.Venue}</div>
-              {show.GalleryLink && (
-                <a
-                  href={show.GalleryLink}
-                  target="_blank"
-                  className="mt-2 inline-block text-yellow-400 hover:text-yellow-500 underline"
-                >
-                  📸 Gallery
-                </a>
-              )}
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="max-w-6xl mx-auto text-center">
+      <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-yellow-100 glitch-text">Shows</h2>
+      <p className="text-gray-300 text-sm sm:text-base">Full interactive shows list coming soon.</p>
     </div>
   );
 }
 
-/* ====== Other Pages ====== */
 function Gallery() {
   return (
     <div className="max-w-6xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6 text-yellow-100 glitch-text">Gallery</h2>
-      <p className="text-gray-300">Photos from Radio World and live shows will go here.</p>
+      <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-yellow-100 glitch-text">Gallery</h2>
+      <p className="text-gray-300 text-sm sm:text-base">Photos from Radio World and live shows will go here.</p>
     </div>
   );
 }
@@ -290,8 +222,8 @@ function Gallery() {
 function About() {
   return (
     <div className="max-w-4xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6 text-yellow-100 glitch-text">About</h2>
-      <p className="text-gray-300 leading-relaxed">
+      <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-yellow-100 glitch-text">About</h2>
+      <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
         Shadows Become Substance is an independent alternative duo from New Jersey.  
         On our album “Radio World” we channel heavy riffs and cinematic atmosphere.  
         The crackle of static and the roar of amplifiers merge as we push from raw emotion into catharsis both on stage and in the studio.
@@ -303,8 +235,8 @@ function About() {
 function Contact() {
   return (
     <div className="max-w-4xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6 text-yellow-100 glitch-text">Contact</h2>
-      <p className="text-gray-300">
+      <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-yellow-100 glitch-text">Contact</h2>
+      <p className="text-gray-300 text-sm sm:text-base">
         Email:{" "}
         <a href="mailto:booking.sbs@gmail.com" className="text-red-500 hover:text-red-600 underline">
           booking.sbs@gmail.com
