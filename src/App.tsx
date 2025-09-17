@@ -162,11 +162,15 @@ function Home() {
 
         {/* Spotify + YouTube */}
         <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl w-full mx-auto">
-          <iframe
-            className="w-full h-[220px] sm:h-[380px] rounded-lg border border-gray-700 shadow-lg"
-            src="https://open.spotify.com/embed/artist/7D2Dx35nAzENA8TqOTeVUm"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
+          <<div className="w-full h-[380px] rounded-lg border border-gray-700 shadow-lg overflow-hidden">
+  <iframe
+    className="w-full h-full"
+    src="https://open.spotify.com/embed/artist/7D2Dx35nAzENA8TqOTeVUm"
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    loading="lazy"
+  />
+</div>
+
           />
           <iframe
             className="w-full h-[220px] sm:h-[380px] rounded-lg border border-gray-700 shadow-lg"
