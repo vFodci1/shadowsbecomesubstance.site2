@@ -180,13 +180,90 @@ function Home() {
 /* ====== Other Pages ====== */
 
 function Shows() {
+  const [shows, setShows] = useState<Show[]>([]);
+
+  useEffect(() => {
+    fetch("https://sheetdb.io/api/v1/is31x8480hnqe")
+      .then((res) => res.json())
+      .then((data: Show[]) => setShows(Array.isArray(data) ? data : []))
+      .catch(() => setShows([]));
+  }, []);
+
+  const today = new Date();
+
+  const upcoming = shows.filter((s) => {
+    const d = new Date(s.Date);
+    return !isNaN(d.getTime()) && d >= today;
+  });
+
+  const past = shows.filter((s) => {
+    const d = new Date(s.Date);
+    return !isNaN(d.getTime()) && d < today;
+  });
+
   return (
-    <div className="max-w-6xl mx-auto text-center">
-      <h2 className="text-3xl font-bold mb-6 text-yellow-100 glitch-text">Shows</h2>
-      <p className="text-gray-300">Full interactive shows list coming soon.</p>
+    <div className="max-w-6xl mx-auto">
+      {/* Upcoming Shows */}
+      <h2 className="text-3xl font-bold mb-6 text-yellow-100 glitch-text text-center">
+        Upcoming Shows
+      </h2>
+      {upcoming.length === 0 ? (
+        <p className="text-gray-400 text-center">No upcoming shows right now.</p>
+      ) : (
+        <ul className="grid md:grid-cols-2 gap-6">
+          {upcoming.map((show, idx) => (
+            <li
+              key={idx}
+              className="bg-black/60 border border-red-600 p-6 rounded-lg shadow-md hover:scale-105 transition-transform"
+            >
+              <div className="text-gray-300">{show.Date} • {show.City}</div>
+              <div className="text-xl font-bold text-white">{show.Venue}</div>
+              {show.TicketLink && (
+                <a
+                  href={show.TicketLink}
+                  target="_blank"
+                  className="mt-2 inline-block text-red-500 hover:text-red-600 underline"
+                >
+                  🎟 Tickets
+                </a>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {/* Past Shows */}
+      <h2 className="text-3xl font-bold mb-6 text-yellow-100 glitch-text text-center mt-12">
+        Past Shows
+      </h2>
+      {past.length === 0 ? (
+        <p className="text-gray-400 text-center">No past shows yet.</p>
+      ) : (
+        <ul className="grid md:grid-cols-2 gap-6">
+          {past.map((show, idx) => (
+            <li
+              key={idx}
+              className="bg-black/50 border border-yellow-500 p-6 rounded-lg shadow-md hover:scale-105 transition-transform"
+            >
+              <div className="text-gray-300">{show.Date} • {show.City}</div>
+              <div className="text-xl font-bold text-white">{show.Venue}</div>
+              {show.GalleryLink && (
+                <a
+                  href={show.GalleryLink}
+                  target="_blank"
+                  className="mt-2 inline-block text-yellow-400 hover:text-yellow-500 underline"
+                >
+                  📸 Gallery
+                </a>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
+
 
 function Gallery() {
   return (
