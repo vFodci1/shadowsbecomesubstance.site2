@@ -1,13 +1,21 @@
 import { useState, useEffect } from "react";
 
+interface Show {
+  Date: string;
+  Venue: string;
+  City: string;
+  TicketLink: string;
+  GalleryLink?: string;
+}
+
 function App() {
-  const [shows, setShows] = useState([]);
+  const [shows, setShows] = useState<Show[]>([]);
 
   useEffect(() => {
-    // Replace this URL with your SheetDB endpoint
-    fetch("https://sheetdb.io/api/v1/is31x8480hnqe")
+    fetch("https://sheetdb.io/api/v1/YOUR_SHEET_ID") // replace with your actual SheetDB URL
       .then((res) => res.json())
-      .then((data) => setShows(data));
+      .then((data: Show[]) => setShows(data))
+      .catch((err) => console.error("Error fetching shows:", err));
   }, []);
 
   return (
@@ -15,25 +23,14 @@ function App() {
       {/* Navbar */}
       <header className="sticky top-0 z-50 bg-gray-950/90 backdrop-blur border-b border-red-600">
         <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
-          <a
-            href="#"
-            className="text-yellow-100 tracking-wide text-xl sm:text-2xl font-bold"
-          >
+          <a href="#" className="text-yellow-100 tracking-wide text-xl sm:text-2xl font-bold">
             Shadows Become Substance
           </a>
           <nav className="hidden sm:flex items-center gap-6 text-sm">
-            <a href="#music" className="hover:text-red-400">
-              Music
-            </a>
-            <a href="#shows" className="hover:text-red-400">
-              Shows
-            </a>
-            <a href="#about" className="hover:text-red-400">
-              About
-            </a>
-            <a href="#contact" className="hover:text-red-400">
-              Contact
-            </a>
+            <a href="#music" className="hover:text-red-400">Music</a>
+            <a href="#shows" className="hover:text-red-400">Shows</a>
+            <a href="#about" className="hover:text-red-400">About</a>
+            <a href="#contact" className="hover:text-red-400">Contact</a>
           </nav>
         </div>
       </header>
@@ -67,8 +64,7 @@ function App() {
         {/* Hero content */}
         <div className="relative z-10 mx-auto max-w-6xl px-6 py-28 text-center">
           <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight">
-            When <span className="text-yellow-100">Shadows</span> Become{" "}
-            <span className="text-yellow-100">Substance</span>
+            When <span className="text-yellow-100">Shadows</span> Become <span className="text-yellow-100">Substance</span>
           </h1>
           <p className="mt-4 text-lg text-gray-200 max-w-2xl mx-auto">
             Alternative duo from NJ. Heavy energy. Atmospheric weight.
@@ -102,9 +98,7 @@ function App() {
             className="group rounded-lg border border-gray-800 p-5 hover:border-red-600 transition"
           >
             <div className="text-sm text-gray-400">Single • 2025</div>
-            <div className="mt-1 text-xl font-semibold group-hover:text-red-400">
-              SUBSTANCE
-            </div>
+            <div className="mt-1 text-xl font-semibold group-hover:text-red-400">SUBSTANCE</div>
             <div className="mt-3 text-gray-400">Stream on Spotify →</div>
           </a>
           <a
@@ -113,9 +107,7 @@ function App() {
             className="group rounded-lg border border-gray-800 p-5 hover:border-red-600 transition"
           >
             <div className="text-sm text-gray-400">Single • 2025</div>
-            <div className="mt-1 text-xl font-semibold group-hover:text-red-400">
-              NEXT SEPTEMBER
-            </div>
+            <div className="mt-1 text-xl font-semibold group-hover:text-red-400">NEXT SEPTEMBER</div>
             <div className="mt-3 text-gray-400">Stream on Spotify →</div>
           </a>
           <a
@@ -124,9 +116,7 @@ function App() {
             className="group rounded-lg border border-gray-800 p-5 hover:border-red-600 transition"
           >
             <div className="text-sm text-gray-400">Single • 2024</div>
-            <div className="mt-1 text-xl font-semibold group-hover:text-red-400">
-              ACTIVE
-            </div>
+            <div className="mt-1 text-xl font-semibold group-hover:text-red-400">ACTIVE</div>
             <div className="mt-3 text-gray-400">Stream on Apple Music →</div>
           </a>
         </div>
@@ -189,9 +179,9 @@ function App() {
       <section id="about" className="mx-auto max-w-4xl px-6 py-16">
         <h2 className="text-3xl font-bold mb-6 text-yellow-100">About</h2>
         <p className="text-gray-300 leading-relaxed">
-          Shadows Become Substance is an independent alternative duo from New
-          Jersey, channeling heavy riffs and cinematic atmosphere. We push from
-          raw emotion into catharsis on stage and in the studio.
+          Shadows Become Substance is an independent alternative duo from New Jersey,
+          channeling heavy riffs and cinematic atmosphere. We push from raw emotion into
+          catharsis on stage and in the studio.
         </p>
       </section>
 
@@ -200,36 +190,12 @@ function App() {
         <div className="mx-auto max-w-6xl px-6 py-12">
           <h2 className="text-3xl font-bold mb-4 text-yellow-100">Contact</h2>
           <p className="text-gray-300">
-            Email:{" "}
-            <a
-              className="text-red-400 hover:underline"
-              href="mailto:booking.sbs@gmail.com"
-            >
-              booking.sbs@gmail.com
-            </a>
+            Email: <a className="text-red-400 hover:underline" href="mailto:booking.sbs@gmail.com">booking.sbs@gmail.com</a>
           </p>
           <div className="mt-4 flex items-center gap-4">
-            <a
-              className="text-red-400 hover:underline"
-              target="_blank"
-              href="https://www.instagram.com/shadowsbecomesubstance/"
-            >
-              Instagram
-            </a>
-            <a
-              className="text-red-400 hover:underline"
-              target="_blank"
-              href="https://open.spotify.com/artist/7D2Dx35nAzENA8TqOTeVUm"
-            >
-              Spotify
-            </a>
-            <a
-              className="text-red-400 hover:underline"
-              target="_blank"
-              href="https://www.youtube.com/channel/UCEwqJHtv8JP-jFttrSTDK3A"
-            >
-              YouTube
-            </a>
+            <a className="text-red-400 hover:underline" target="_blank" href="https://www.instagram.com/shadowsbecomesubstance/">Instagram</a>
+            <a className="text-red-400 hover:underline" target="_blank" href="https://open.spotify.com/artist/7D2Dx35nAzENA8TqOTeVUm">Spotify</a>
+            <a className="text-red-400 hover:underline" target="_blank" href="https://www.youtube.com/channel/UCEwqJHtv8JP-jFttrSTDK3A">YouTube</a>
           </div>
         </div>
       </section>
@@ -243,4 +209,5 @@ function App() {
 }
 
 export default App;
+
 
