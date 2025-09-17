@@ -123,7 +123,7 @@ function Home() {
       style={{
         backgroundImage:
           "linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.85)), url('/band-hero.jpg')",
-        backgroundPosition: "center 20%",
+        backgroundPosition: "center 50%",
       }}
     >
       <div className="relative z-10 text-center px-6 py-28">
