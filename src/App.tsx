@@ -189,16 +189,30 @@ function Shows() {
       .catch(() => setShows([]));
   }, []);
 
+  // Custom date parser for formats like "8/15" or "8/15/2025"
+  function parseDate(dateStr: string): Date | null {
+    if (!dateStr) return null;
+    const parts = dateStr.split(/[\/\-]/); // split on "/" or "-"
+    if (parts.length < 2) return null;
+
+    let month = parseInt(parts[0], 10) - 1;
+    let day = parseInt(parts[1], 10);
+    let year = parts[2] ? parseInt(parts[2], 10) : new Date().getFullYear();
+
+    const d = new Date(year, month, day);
+    return isNaN(d.getTime()) ? null : d;
+  }
+
   const today = new Date();
 
   const upcoming = shows.filter((s) => {
-    const d = new Date(s.Date);
-    return !isNaN(d.getTime()) && d >= today;
+    const d = parseDate(s.Date);
+    return d !== null && d >= today;
   });
 
   const past = shows.filter((s) => {
-    const d = new Date(s.Date);
-    return !isNaN(d.getTime()) && d < today;
+    const d = parseDate(s.Date);
+    return d !== null && d < today;
   });
 
   return (
