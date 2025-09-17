@@ -109,7 +109,7 @@ function Home() {
   const [shows, setShows] = useState<Show[]>([]);
 
   useEffect(() => {
-    fetch("https://sheetdb.io/api/v1/YOUR_SHEET_ID")
+    fetch("https://sheetdb.io/api/v1/is31x8480hnqe")
       .then((res) => res.json())
       .then((data: Show[]) => setShows(Array.isArray(data) ? data : []))
       .catch(() => setShows([]));
