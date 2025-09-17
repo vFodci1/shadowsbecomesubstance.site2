@@ -119,7 +119,7 @@ function Home() {
 
   return (
     <section
-      className="relative bg-cover bg-center"
+      className="relative bg-cover bg-top"
       style={{
         backgroundImage:
           "linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.85)), url('/band-hero.jpg')",
