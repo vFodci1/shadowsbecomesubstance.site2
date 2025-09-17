@@ -117,14 +117,14 @@ function Home() {
 
   const nextShow = shows.length > 0 ? shows[0] : null;
 
-  return (
-    <<section
+  <section
   className="relative bg-cover"
   style={{
     backgroundImage:
       "linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.85)), url('/band-hero.jpg')",
     backgroundPosition: "center 20%", // moves image up
   }}
+>
     >
       <div className="relative z-10 text-center px-6 py-28">
         <div className="bg-black/70 px-6 py-10 rounded-lg inline-block">
