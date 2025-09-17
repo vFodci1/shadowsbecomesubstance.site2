@@ -118,13 +118,13 @@ function Home() {
   const nextShow = shows.length > 0 ? shows[0] : null;
 
   <section
-  className="relative bg-cover"
+  className="relative bg-cover bg-center"
   style={{
     backgroundImage:
       "linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.85)), url('/band-hero.jpg')",
-    backgroundPosition: "center 20%", // moves image up
   }}
 >
+
     >
       <div className="relative z-10 text-center px-6 py-28">
         <div className="bg-black/70 px-6 py-10 rounded-lg inline-block">
@@ -177,18 +177,6 @@ function Home() {
     </section>
   );
 }
-
-/* ====== Other Pages ====== */
-
-function Shows() {
-  const [shows, setShows] = useState<Show[]>([]);
-
-  useEffect(() => {
-    fetch("https://sheetdb.io/api/v1/is31x8480hnqe")
-      .then((res) => res.json())
-      .then((data: Show[]) => setShows(Array.isArray(data) ? data : []))
-      .catch(() => setShows([]));
-  }, []);
 
   // Custom date parser for formats like "8/15" or "8/15/2025"
   function parseDate(dateStr: string): Date | null {
