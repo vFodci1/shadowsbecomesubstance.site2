@@ -74,29 +74,30 @@ function Layout({ children }: { children: React.ReactNode }) {
       </div>
 
       {/* Navbar */}
-      <header className="sticky top-0 z-30 bg-gray-950/90 backdrop-blur border-b border-red-600">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-4 flex items-center justify-between">
-          <Link to="/" className="text-yellow-100 tracking-wide text-lg sm:text-2xl font-bold glitch-text">
-            SBS
-          </Link>
+<header className="sticky top-0 z-30 bg-gray-950/90 backdrop-blur border-b border-red-600">
+  <div className="mx-auto max-w-6xl px-4 sm:px-6 py-4 flex items-center justify-between">
+    <Link to="/" className="text-yellow-100 tracking-wide text-lg sm:text-2xl font-bold glitch-text">
+      Shadows Become Substance
+    </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden sm:flex items-center gap-6 text-sm uppercase font-semibold">
-            <Link to="/" className="hover:text-red-400">Home</Link>
-            <Link to="/shows" className="hover:text-red-400">Shows</Link>
-            <Link to="/gallery" className="hover:text-red-400">Gallery</Link>
-            <Link to="/about" className="hover:text-red-400">About</Link>
-            <Link to="/contact" className="hover:text-red-400">Contact</Link>
-          </nav>
+    {/* Desktop Nav */}
+    <nav className="hidden sm:flex items-center gap-6 text-sm uppercase font-semibold">
+      <Link to="/" className="hover:text-red-400">Home</Link>
+      <Link to="/shows" className="hover:text-red-400">Shows</Link>
+      <Link to="/gallery" className="hover:text-red-400">Gallery</Link>
+      <Link to="/about" className="hover:text-red-400">About</Link>
+      <Link to="/contact" className="hover:text-red-400">Contact</Link>
+    </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="sm:hidden text-red-400 text-2xl"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            ☰
-          </button>
-        </div>
+    {/* Mobile Menu Button */}
+    <button
+      className="sm:hidden text-red-400 text-2xl"
+      onClick={() => setMenuOpen(!menuOpen)}
+    >
+      ☰
+    </button>
+  </div>
+
 
         {/* Mobile Dropdown */}
         {menuOpen && (
